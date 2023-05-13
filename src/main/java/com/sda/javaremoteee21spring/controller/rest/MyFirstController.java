@@ -3,6 +3,7 @@ package com.sda.javaremoteee21spring.controller.rest;
 import com.sda.javaremoteee21spring.dto.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -47,9 +48,12 @@ public class MyFirstController {
     }
 
     @PostMapping("/try-login")
-    public String logInWithPost(String userLogin, String userPassword) {
+    public ResponseEntity<String> logInWithPost(String userLogin, String userPassword) {
         log.info("login with post");
         log.info("received login: [{}] and password: [{}]", userLogin, userPassword);
-        return "OK";
+        if (userLogin == null || userPassword == null) {
+            return ResponseEntity.badRequest().body("Provide credentials");
+        }
+        return ResponseEntity.ok("Success");
     }
 }
