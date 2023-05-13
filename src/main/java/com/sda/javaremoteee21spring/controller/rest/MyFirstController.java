@@ -1,6 +1,7 @@
 package com.sda.javaremoteee21spring.controller.rest;
 
 import com.sda.javaremoteee21spring.dto.Person;
+import com.sda.javaremoteee21spring.service.MyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +14,15 @@ import java.util.List;
 @RequestMapping("/api")
 public class MyFirstController {
 
+    private final MyService service;
+
     // @Slf4j
     private static final Logger log = LoggerFactory.getLogger(MyFirstController.class);
+
+    public MyFirstController(MyService service) {
+        log.info("MyFirstController constructor");
+        this.service = service;
+    }
 
     @GetMapping("/name")
     public String showMeMyName() {
