@@ -3,10 +3,7 @@ package com.sda.javaremoteee21spring.controller.rest;
 import com.sda.javaremoteee21spring.dto.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +43,12 @@ public class MyFirstController {
     public String logIn(@RequestParam(defaultValue = "John Doe", value = "login") String userLogin,
                         @RequestParam(defaultValue = "pass", value = "password") String userPassword) {
         log.info("received login: [{}] and password: [{}]", userLogin, userPassword);
+        return "OK";
+    }
+
+    @PostMapping("/try-login")
+    public String logInWithPost() {
+        log.info("login with post");
         return "OK";
     }
 }
