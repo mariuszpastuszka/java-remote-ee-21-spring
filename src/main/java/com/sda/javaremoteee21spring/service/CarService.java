@@ -18,7 +18,8 @@ public class CarService {
     }
 
     public List<Car> findAllCars() {
-        List<Car> carsFromRepository = carRepository.findAll();
+//        List<Car> carsFromRepository = carRepository.findAll();
+        var carsFromRepository = carRepository.findAll();
         log.info("we've got [{}] cars", carsFromRepository.size());
         log.debug("cars: " + carsFromRepository);
         return carsFromRepository;
