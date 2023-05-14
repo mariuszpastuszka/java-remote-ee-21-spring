@@ -56,7 +56,8 @@ public class MyFirstController {
     }
 
     @PostMapping("/try-login")
-    public ResponseEntity<String> logInWithPost(String userLogin, String userPassword) {
+    public ResponseEntity<String> logInWithPost(@RequestParam("login") String userLogin,
+                                                @RequestParam("password") String userPassword) {
         log.info("login with post");
         log.info("received login: [{}] and password: [{}]", userLogin, userPassword);
         if (userLogin == null || userPassword == null) {
