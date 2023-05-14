@@ -64,4 +64,11 @@ public class MyFirstController {
         }
         return ResponseEntity.ok("Success");
     }
+
+    @GetMapping("/secret")
+    public String getOneSecret() {
+        String secretToShare = service.shareOneSecret();
+        log.info("Sharing [{}] secret with user", secretToShare);
+        return secretToShare;
+    }
 }
