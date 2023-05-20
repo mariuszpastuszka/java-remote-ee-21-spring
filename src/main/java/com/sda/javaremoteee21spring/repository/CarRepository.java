@@ -8,17 +8,22 @@ import org.springframework.stereotype.Repository;
 
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Slf4j
 public class CarRepository {
 
-    private final List<Car> cars = new ArrayList<>();
+    private final Map<Long, Car> cars = new HashMap<>();
 
     public CarRepository() {
-        cars.addAll(createSomeCars());
+        for (Car car : createSomeCars()) {
+            cars.put(car.getId(), car);
+        }
     }
+
     private List<Car> createSomeCars() {
         return List.of(
                 Car.builder()
@@ -48,6 +53,11 @@ public class CarRepository {
 
     public List<Car> findAll() {
         log.info("find all cars");
-        return cars;
+        return new ArrayList<>(cars.values());
+    }
+
+    public Car findById(Long id) {
+        log.info("finding car by id: [{}]", id);
+        return cars.get(id);
     }
 }
