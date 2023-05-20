@@ -85,4 +85,16 @@ public class CarRepository {
                 .max(Long::compareTo)
                 .orElse(0L) + 1;
     }
+
+    public void deleteById(Long id) {
+        log.info("Deleting car by id: [{}]", id);
+        cars.remove(id);
+    }
+
+    public boolean existById(Long id) {
+        log.info("Checking if car exist by id: [{}]", id);
+        boolean exist = cars.containsKey(id);
+        log.info("Car exists? - [{}]", exist);
+        return exist;
+    }
 }

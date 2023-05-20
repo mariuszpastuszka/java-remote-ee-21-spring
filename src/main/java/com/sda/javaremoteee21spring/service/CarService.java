@@ -49,4 +49,13 @@ public class CarService {
         log.info("Car with assigned id: [{}]", savedCar);
         return savedCar;
     }
+
+    public void deleteCarById(Long id) {
+        log.info("Deleting item with id: [{}]", id);
+        if (carRepository.existById(id)) {
+            carRepository.deleteById(id);
+        } else {
+            throw new CarNotFoundException("No car with id: " + id);
+        }
+    }
 }
