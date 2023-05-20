@@ -3,8 +3,10 @@ package com.sda.javaremoteee21spring.controller.rest;
 import com.sda.javaremoteee21spring.entity.Car;
 import com.sda.javaremoteee21spring.service.CarService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -33,8 +35,10 @@ public class CarController {
     }
 
     @PostMapping("/cars")
-    public Car createCar(@RequestBody Car carToSave) {
+    public ResponseEntity<Car> createCar(@RequestBody Car carToSave) {
         log.info("create new car: [{}]", carToSave);
-        return carService.saveCar(carToSave);
+        Car saved = carService.saveCar(carToSave);
+        return ResponseEntity.created(URI.create("/cars/" + saved.getId()))
+                .body(saved);
     }
 }
