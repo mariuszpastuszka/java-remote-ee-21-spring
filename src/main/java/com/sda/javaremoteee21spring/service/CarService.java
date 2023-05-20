@@ -42,4 +42,11 @@ public class CarService {
         Optional<Car> maybeCar = Optional.ofNullable(carFromRepository);
         return maybeCar.orElseThrow(() -> new CarNotFoundException("No car with id: " + id));
     }
+
+    public Car saveCar(Car carToSave) {
+        log.info("Saving object: [{}]", carToSave);
+        Car savedCar = carRepository.save(carToSave);
+        log.info("Car with assigned id: [{}]", savedCar);
+        return savedCar;
+    }
 }

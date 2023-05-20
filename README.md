@@ -37,4 +37,4 @@
 - Car entity: good practices
   - get all cars (url + Http verb): GET /cars
   - get one car (url + Http verb): GET /cars/{id} e.g. /cars/1024
- - /car-id: /1, /2:  /get-car?id=
+  - create new car (url + Http verb): POST /cars

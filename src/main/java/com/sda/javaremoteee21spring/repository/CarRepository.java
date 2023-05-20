@@ -60,4 +60,11 @@ public class CarRepository {
         log.info("finding car by id: [{}]", id);
         return cars.get(id);
     }
+
+    public Car save(Car carToSave) {
+        log.info("Saving car: [{}]", carToSave);
+        // TODO - fix this
+        carToSave.setId(3L);
+        return carToSave;
+    }
 }
