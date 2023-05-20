@@ -1,11 +1,13 @@
 package com.sda.javaremoteee21spring.service;
 
 import com.sda.javaremoteee21spring.entity.Car;
+import com.sda.javaremoteee21spring.exception.CarNotFoundException;
 import com.sda.javaremoteee21spring.repository.CarRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -37,6 +39,7 @@ public class CarService {
         log.info("trying to find car with id: [{}]", id);
         Car carFromRepository = carRepository.findById(id);
         log.info("car from repository: [{}]", carFromRepository);
-        return carFromRepository;
+        Optional<Car> maybeCar = Optional.ofNullable(carFromRepository);
+        return maybeCar.orElseThrow(() -> new CarNotFoundException("No car with id: " + id));
     }
 }
