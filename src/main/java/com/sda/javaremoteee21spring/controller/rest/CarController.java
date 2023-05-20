@@ -49,4 +49,11 @@ public class CarController {
         return ResponseEntity.noContent()
                 .build();
     }
+
+    @PutMapping("/cars/{id}")
+    public Car replaceCar(@RequestBody Car carToReplace, @PathVariable("id") Long carId) {
+        log.info("Replacing car with id: [{}] with content: [{}]", carId, carToReplace);
+        carService.replaceCarById(carToReplace, carId);
+        return carToReplace;
+    }
 }
