@@ -63,8 +63,26 @@ public class CarRepository {
 
     public Car save(Car carToSave) {
         log.info("Saving car: [{}]", carToSave);
-        // TODO - fix this
-        carToSave.setId(3L);
+        Long id = nextId();
+        carToSave.setId(id);
+        cars.put(id, carToSave);
         return carToSave;
+    }
+
+    private Long nextId() {
+        // old way
+//        Long max = 0L;
+//        for (Long id: cars.keySet()) {
+//            if (id > max) {
+//                max = id;
+//            }
+//        }
+//        return max + 1;
+
+        // new way
+        return cars.keySet()
+                .stream()
+                .max(Long::compareTo)
+                .orElse(0L) + 1;
     }
 }
