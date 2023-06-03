@@ -5,9 +5,11 @@ import com.sda.javaremoteee21spring.service.CarService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -35,10 +37,13 @@ public class CarController {
     }
 
     @PostMapping("/cars")
-    public ResponseEntity<Car> createCar(@RequestBody Car carToSave) {
+    public ResponseEntity<Car> createCar(@RequestBody Car carToSave, UriComponentsBuilder ucb) {
         log.info("create new car: [{}]", carToSave);
         Car saved = carService.saveCar(carToSave);
-        return ResponseEntity.created(URI.create("/cars/" + saved.getId()))
+        URI path = ucb.path("/api/cars/{id}")
+                .buildAndExpand(Map.of("id", saved.getId()))
+                .toUri();
+        return ResponseEntity.created(path)
                 .body(saved);
     }
 
