@@ -63,10 +63,10 @@ public class CarService {
         }
     }
 
-    // TODO: handle wrong id
     public Car replaceCarById(Car carToReplace, Long carId) {
         log.info("Replacing car by id: [{}] with content: [{}]", carId, carToReplace);
-        return carRepository.replaceById(carId, carToReplace);
+        return Optional.ofNullable(carRepository.replaceById(carId, carToReplace))
+                .orElseThrow(() -> new CarNotFoundException("No car with id: " + carId));
     }
 
     public Car updateCar(Long id, Car carToUpdate) {
