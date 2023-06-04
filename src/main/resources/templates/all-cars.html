@@ -5,6 +5,35 @@
     <title>All cars</title>
 </head>
 <body>
-
+<h2>All cars</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>VIN</th>
+        <th>Colour</th>
+        <th>Production Year Month</th>
+        <th>Mileage</th>
+        <th>Fuel type</th>
+        <th>Insurance</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--        for (Car car : cars)-->
+    <tr th:each="car:  ${cars}">
+        <td th:text="${car.id}">1</td>
+        <td th:text="${car.brand}">Mazda</td>
+        <td th:text="${car.model}">VI</td>
+        <td th:text="${car.vin}">123FSAFDAF</td>
+        <td th:text="${car.colour}">Blue</td>
+        <td th:text="${car.productionYearMonth}">2020-10</td>
+        <td th:text="${car.mileage}">10000</td>
+        <td th:text="${car.fuelType}">GASOLINE</td>
+        <td th:text="${car.insurance}">true</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
