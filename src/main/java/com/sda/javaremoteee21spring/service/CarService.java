@@ -79,12 +79,14 @@ public class CarService {
         }
     }
 
+    // TODO: migrate to db
     public Car replaceCarById(Car carToReplace, Long carId) {
         log.info("Replacing car by id: [{}] with content: [{}]", carId, carToReplace);
         return Optional.ofNullable(carRepository.replaceById(carId, carToReplace))
                 .orElseThrow(() -> new CarNotFoundException("No car with id: " + carId));
     }
 
+    // TODO: migrate to db
     public Car updateCar(Long id, Car carToUpdate) {
         log.info("Updating car with id: [{}] with content provided by user [{}]", id, carToUpdate);
         // get car by id from repository
