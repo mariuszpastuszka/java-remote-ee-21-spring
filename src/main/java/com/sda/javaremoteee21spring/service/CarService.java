@@ -42,12 +42,19 @@ public class CarService {
 //    }
 
     // better approach with exceptions
+    // previous approach with old in memory datasource
+//    public Car findCarById(Long id) {
+//        log.info("trying to find car with id: [{}]", id);
+//        Car carFromRepository = carRepository.findById(id);
+//        log.info("car from repository: [{}]", carFromRepository);
+//        Optional<Car> maybeCar = Optional.ofNullable(carFromRepository);
+//        return maybeCar.orElseThrow(() -> new CarNotFoundException("No car with id: " + id));
+//    }
+
     public Car findCarById(Long id) {
         log.info("trying to find car with id: [{}]", id);
-        Car carFromRepository = carRepository.findById(id);
-        log.info("car from repository: [{}]", carFromRepository);
-        Optional<Car> maybeCar = Optional.ofNullable(carFromRepository);
-        return maybeCar.orElseThrow(() -> new CarNotFoundException("No car with id: " + id));
+        return springCarRepository.findById(id)
+                .orElseThrow(() -> new CarNotFoundException("No car with id: " + id));
     }
 
     public Car saveCar(Car carToSave) {
