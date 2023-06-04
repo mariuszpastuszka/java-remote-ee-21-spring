@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Car application</title>
 </head>
 <body>
     <h2>Welcome to my car application</h2>
+    <p>How are You <span th:text="${name} + ' ' + ${surname}">Anonymous user</span></p>
 </body>
 </html>
