@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -45,4 +46,11 @@ public class CarWebController {
         return "all-cars";
     }
 
+    @GetMapping("/cars/delete/{id}")
+    public String deleteCarById(@PathVariable Long id) {
+        log.info("Deleting car by id: [{}]", id);
+
+        carService.deleteCarById(id);
+        return "redirect:/web/cars";
+    }
 }
