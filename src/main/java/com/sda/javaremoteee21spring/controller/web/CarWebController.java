@@ -51,6 +51,7 @@ public class CarWebController {
         log.info("Deleting car by id: [{}]", id);
 
         carService.deleteCarById(id);
+        // redirect creates Location header with final url to go
         return "redirect:/web/cars";
     }
 }
