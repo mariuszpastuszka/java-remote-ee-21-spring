@@ -18,6 +18,7 @@
         <th>Mileage</th>
         <th>Fuel type</th>
         <th>Insurance</th>
+        <th>Delete car</th>
     </tr>
     </thead>
     <tbody>
@@ -32,6 +33,7 @@
         <td th:text="${car.mileage}">10000</td>
         <td th:text="${car.fuelType}">GASOLINE</td>
         <td th:text="${car.insurance}">true</td>
+        <td><a th:href="@{'/web/cars/delete/' + ${car.id}}" href="#">delete</a></td>
     </tr>
     </tbody>
 </table>
